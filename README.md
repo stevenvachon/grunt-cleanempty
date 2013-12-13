@@ -43,6 +43,12 @@ Default value: `true`
 
 Remove empty files or not.
 
+#### options.folders
+Type: `Boolean`  
+Default value: `true`  
+
+Remove empty folders or not.
+
 #### options.force
 Type: `Boolean`  
 Default value: `false`  
@@ -82,4 +88,5 @@ grunt.initConfig({
 ```
 
 ## Release History
-0.1.0 initial release
+* 0.2.0 added `options.folders`
+* 0.1.0 initial release

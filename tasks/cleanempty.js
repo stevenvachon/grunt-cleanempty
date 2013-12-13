@@ -16,6 +16,7 @@ module.exports = function(grunt)
 	{
 		// Task options
 		var files   = !(grunt.option("files")    === false);	// defaults to true
+		var folders = !(grunt.option("folders")  === false);	// defaults to true
 		var force   =   grunt.option("force")    === true;
 		var noWrite =   grunt.option("no-write") === true;
 		
@@ -23,9 +24,10 @@ module.exports = function(grunt)
 		var options = this.options();
 		var options = this.options(
 		{
-			files:		(options.files      ===undefined ? files   : options.files),
-			force:		(options.force      ===undefined ? force   : options.force),
-			"no-write":	(options["no-write"]===undefined ? noWrite : options["no-write"])
+			files:      (options.files      ===undefined ? files   : options.files),
+			folders:    (options.folders    ===undefined ? folders : options.folders),
+			force:      (options.force      ===undefined ? force   : options.force),
+			"no-write": (options["no-write"]===undefined ? noWrite : options["no-write"])
 		});
 		
 		grunt.verbose.writeflags(options, "Options");
@@ -45,7 +47,7 @@ module.exports = function(grunt)
 			}
 			else
 			{
-				if (fs.readdirSync(filepath).length > 0) continue;
+				if (fs.readdirSync(filepath).length > 0 || !options.folders) continue;
 			}
 			
 			
