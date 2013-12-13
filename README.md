@@ -66,9 +66,17 @@ grunt.initConfig({
 grunt.initConfig({
   cleanempty: {
     options: {
-      files: false,
+      force: true,
     },
-    src: ['src/testing/**/*', 'src/123'],
+    testing: {
+      options: {
+        files: false,
+      },
+      src: ['src/testing/**/*']
+    }
+    123: {
+      src: ['src/123'],
+    },
   },
 });
 ```
