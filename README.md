@@ -56,7 +56,7 @@ Override the task from blocking deletion of folders outside current working dir 
 grunt.initConfig({
   cleanempty: {
     options: {},
-    src: ['src/testing/**/*', 'src/123'],
+    src: ['src/testing/**/*', 'src/123/*'],
   },
 });
 ```
@@ -75,7 +75,7 @@ grunt.initConfig({
       src: ['src/testing/**/*']
     }
     123: {
-      src: ['src/123'],
+      src: ['src/123/*'],
     },
   },
 });
