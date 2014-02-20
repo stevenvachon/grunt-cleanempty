@@ -1,68 +1,108 @@
-/*
- * grunt-cleanempty
- * https://github.com/stevenvachon/grunt-cleanempty
- *
- * Copyright (c) 2013 Steven Vachon
- * Licensed under the MIT license.
- */
+var ndd = require("node-dir-diff");
+var path = require("path");
 
-'use strict';
 
-module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
-      options: {
-        jshintrc: '.jshintrc',
-      },
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
-    // Configuration to be run (and then tested).
-    cleanempty: {
-      default_options: {
-        options: {
-        },
-        src: ['tmp/default_options/**/*'],
-      },
-      custom_options: {
-        options: {
-          files: false,
-        },
-        src: ['tmp/custom_options/**/*'],
-      },
-    },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
-
-  });
-
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'cleanempty', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
-
+module.exports = function(grunt)
+{
+	grunt.initConfig(
+	{
+		cleanempty:
+		{
+			"default_options":
+			{
+				src: ["test/temp/default_options/**/*"]
+			},
+			"custom_options":
+			{
+				options:
+				{
+					files: false
+				},
+				src: ["test/temp/custom_options/**/*"]
+			}
+		},
+		
+		
+		
+		copy:
+		{
+			"pre":
+			{
+				files:
+				[
+					{ cwd:"test/fixtures/before/", src:["**"], dest:"test/temp/", expand:true, dot:true }
+				]
+			}
+		}
+	});
+	
+	
+	
+	grunt.loadNpmTasks("grunt-contrib-copy");
+	grunt.loadTasks("tasks");
+	
+	
+	
+	grunt.registerTask("reset", function()
+	{
+		grunt.file.delete("test/temp/");
+	});
+	
+	
+	
+	grunt.registerTask("test", function()
+	{
+		var done = this.async();
+		
+		function test1(callback)
+		{
+			new ndd.Dir_Diff
+			(
+				[
+					path.resolve("test/fixtures/after/custom_options/"),
+					path.resolve("test/temp/custom_options/")
+				],
+				"list"
+			).compare( function(err, result)
+			{
+				if (result.deviation) grunt.fail.fatal("Custom option results do not match");
+				
+				grunt.log.ok("Custom option results match");
+				
+				callback();
+			});
+		}
+		
+		function test2(callback)
+		{
+			new ndd.Dir_Diff
+			(
+				[
+					path.resolve("test/fixtures/after/default_options/"),
+					path.resolve("test/temp/default_options/")
+				],
+				"list"
+			).compare( function(err, result)
+			{
+				if (result.deviation) grunt.fail.fatal("Default option results do not match");
+				
+				grunt.log.ok("Default option results match");
+				
+				callback();
+			});
+		}
+		
+		test1( function()
+		{
+			test2( function()
+			{
+				done();
+			});
+		});
+	});
+	
+	
+	
+	grunt.registerTask("default", ["reset","copy:pre","cleanempty","test","reset"]);
 };

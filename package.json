@@ -1,7 +1,7 @@
 {
   "name": "grunt-cleanempty",
   "description": "Clean empty files and folders.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/stevenvachon/grunt-cleanempty",
   "author": {
     "name": "Steven Vachon",
@@ -26,18 +26,18 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4",
+    "grunt-contrib-copy": "~0.5",
+    "node-dir-diff": "0.0.1a"
   },
   "peerDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4"
   },
   "keywords": [
+    "clean",
     "grunt-contrib-clean",
     "gruntplugin"
   ]

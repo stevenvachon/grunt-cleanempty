@@ -1,4 +1,4 @@
-# grunt-cleanempty
+# grunt-cleanempty [![NPM Version](http://badge.fury.io/js/grunt-cleanempty.svg)](http://badge.fury.io/js/grunt-cleanempty) [![Build Status](https://secure.travis-ci.org/stevenvachon/grunt-cleanempty.svg)](http://travis-ci.org/stevenvachon/grunt-cleanempty)
 
 > Clean empty files and folders.
 
@@ -88,5 +88,10 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 0.2.1 added tests
 * 0.2.0 added `options.folders`
 * 0.1.0 initial release
+
+---
+
+[![Analytics](https://ga-beacon.appspot.com/UA-3614308-7/stevenvachon/grunt-cleanempty)](https://github.com/igrigorik/ga-beacon "Google Analytics") [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/stevenvachon/grunt-cleanempty/trend.png)](https://bitdeli.com/free)
