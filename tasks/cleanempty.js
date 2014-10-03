@@ -51,12 +51,14 @@ module.exports = function(grunt)
 			}
 			
 			
-			grunt.log.write((options["no-write"] ? "Not actually cleaning " : "Cleaning ") + filepath + "...");
+			grunt.verbose.write((options["no-write"] ? "Not actually cleaning " : "Cleaning ") + filepath + "...");
 			
 			grunt.file.delete(filepath, deleteOptions);
 			
-			grunt.log.ok();
+			grunt.verbose.ok();
 		}
+
+		grunt.log.ok(this.filesSrc.length + " " + grunt.util.pluralize(this.filesSrc.length, "path/paths") + " cleaned.")
 	});
 	
 	
