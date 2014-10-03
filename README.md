@@ -88,6 +88,7 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 1.0.1 tweaked log verbosity
 * 1.0.0 release
 * 0.2.1 added tests
 * 0.2.0 added `options.folders`
@@ -95,4 +96,4 @@ grunt.initConfig({
 
 ---
 
-[![Analytics](https://ga-beacon.appspot.com/UA-3614308-7/stevenvachon/grunt-cleanempty)](https://github.com/igrigorik/ga-beacon "Google Analytics") [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/stevenvachon/grunt-cleanempty/trend.png)](https://bitdeli.com/free)
+[![Analytics](https://ga-beacon.appspot.com/UA-3614308-7/stevenvachon/grunt-cleanempty)](https://github.com/igrigorik/ga-beacon "Google Analytics")
