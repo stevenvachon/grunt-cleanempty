@@ -87,7 +87,11 @@ grunt.initConfig({
 });
 ```
 
+## Roadmap Features
+* switch to asynchronous file system functions to better support [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent)
+
 ## Release History
+* 1.0.2 performance enhancement
 * 1.0.1 tweaked log verbosity
 * 1.0.0 release
 * 0.2.1 added tests
