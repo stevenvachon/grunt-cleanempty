@@ -35,11 +35,11 @@ module.exports = function(grunt)
 			
 			if ( !grunt.file.isDir(filepath) )
 			{
-				if (fs.readFileSync(filepath).length > 0 || !options.files) continue;
+				if (!options.files || fs.readFileSync(filepath).length > 0) continue;
 			}
 			else
 			{
-				if (fs.readdirSync(filepath).length > 0 || !options.folders) continue;
+				if (!options.folders || fs.readdirSync(filepath).length > 0) continue;
 			}
 			
 			
