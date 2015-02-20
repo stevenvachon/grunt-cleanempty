@@ -7,19 +7,21 @@ module.exports = function(grunt)
 	grunt.registerMultiTask("cleanempty", "Clean empty files and folders.", function()
 	{
 		// Task options
-		var files   = !(grunt.option("files")    === false);	// defaults to true
-		var folders = !(grunt.option("folders")  === false);	// defaults to true
-		var force   =   grunt.option("force")    === true;
-		var noWrite =   grunt.option("no-write") === true;
+		var files    = !(grunt.option("files")    === false);	// defaults to true
+		var folders  = !(grunt.option("folders")  === false);	// defaults to true
+		var force    =   grunt.option("force")    === true;
+		var noWrite  =   grunt.option("no-write") === true;
+		var dsStores =   grunt.option("dsStores") === true;
 		
 		// Target options
 		var options = this.options();
 		var options = this.options(
 		{
-			files:      (options.files      ===undefined ? files   : options.files),
-			folders:    (options.folders    ===undefined ? folders : options.folders),
-			force:      (options.force      ===undefined ? force   : options.force),
-			"no-write": (options["no-write"]===undefined ? noWrite : options["no-write"])
+			files:      (options.files      ===undefined ? files    : options.files),
+			folders:    (options.folders    ===undefined ? folders  : options.folders),
+			force:      (options.force      ===undefined ? force    : options.force),
+			"no-write": (options["no-write"]===undefined ? noWrite  : options["no-write"]),
+			dsStores:   (options.dsStores   ===undefined ? dsStores : options.dsStores)
 		});
 		
 		grunt.verbose.writeflags(options, "Options");
@@ -39,7 +41,18 @@ module.exports = function(grunt)
 			}
 			else
 			{
-				if (!options.folders || fs.readdirSync(filepath).length > 0) continue;
+				if (!options.folders) continue;
+				
+				var len = fs.readdirSync(filepath).length;
+				
+				if (options.dsStores && len === 1)
+				{
+    				if (!grunt.file.isFile(filepath + '/.DS_Store')) continue;
+				}
+				else if (len > 0)
+				{
+    				continue;
+				}
 			}
 			
 			
