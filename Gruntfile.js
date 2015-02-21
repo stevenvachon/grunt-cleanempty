@@ -17,7 +17,8 @@ module.exports = function(grunt)
 			{
 				options:
 				{
-					files: false
+					files: false,
+					noJunk: true
 				},
 				src: ["test/temp/custom_options/**/*"]
 			}
