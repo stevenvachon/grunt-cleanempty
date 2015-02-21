@@ -53,6 +53,7 @@ module.exports = function(grunt)
 					{
 						return grunt.file.isFile(filepath + '/' + name) && junk.is(name);
 					});
+					
 					if (!allJunk) continue;
 				}
 				else if (len > 0)

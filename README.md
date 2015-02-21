@@ -59,7 +59,7 @@ Override the task from blocking deletion of folders outside current working dir 
 Type: `Boolean`  
 Default value: `false`  
 
-Consider folders that only have [junk](https://github.com/sindresorhus/junk) files in them to be empty. Use in conjunction with options.folders set to true.
+Consider folders that only have [junk](https://github.com/sindresorhus/junk) files in them to be empty. Use in conjunction with `options.folders` set to `true`.
 
 ### Usage Examples
 
