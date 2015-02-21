@@ -1,6 +1,7 @@
 "use strict";
 
 var fs = require("fs");
+var junk = require("junk");
 
 module.exports = function(grunt)
 {
@@ -11,6 +12,7 @@ module.exports = function(grunt)
 		var folders = !(grunt.option("folders")  === false);	// defaults to true
 		var force   =   grunt.option("force")    === true;
 		var noWrite =   grunt.option("no-write") === true;
+		var noJunk  =   grunt.option("junk")     === true;
 		
 		// Target options
 		var options = this.options();
@@ -19,7 +21,8 @@ module.exports = function(grunt)
 			files:      (options.files      ===undefined ? files   : options.files),
 			folders:    (options.folders    ===undefined ? folders : options.folders),
 			force:      (options.force      ===undefined ? force   : options.force),
-			"no-write": (options["no-write"]===undefined ? noWrite : options["no-write"])
+			"no-write": (options["no-write"]===undefined ? noWrite : options["no-write"]),
+			noJunk:     (options.noJunk     ===undefined ? noJunk  : options.noJunk)
 		});
 		
 		grunt.verbose.writeflags(options, "Options");
@@ -39,7 +42,24 @@ module.exports = function(grunt)
 			}
 			else
 			{
-				if (!options.folders || fs.readdirSync(filepath).length > 0) continue;
+				if (!options.folders) continue;
+				
+				var arr = fs.readdirSync(filepath);
+				var len = arr.length;
+				
+				if (options.noJunk && len > 0)
+				{
+					var allJunk = arr.every(function(name) 
+					{
+						return grunt.file.isFile(filepath + '/' + name) && junk.is(name);
+					});
+					
+					if (!allJunk) continue;
+				}
+				else if (len > 0)
+				{
+					continue;
+				}
 			}
 			
 			
