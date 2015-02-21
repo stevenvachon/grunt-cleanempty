@@ -55,11 +55,11 @@ Default value: `false`
 
 Override the task from blocking deletion of folders outside current working dir (CWD). Use with caution.
 
-#### options.dsStores
+#### options.noJunk
 Type: `Boolean`  
 Default value: `false`  
 
-Consider folders with lone .DS_Store files inside them to be empty. Use in conjunction with options.folders set to true.
+Consider folders that only have [junk](https://github.com/sindresorhus/junk) files in them to be empty. Use in conjunction with options.folders set to true.
 
 ### Usage Examples
 
@@ -97,7 +97,7 @@ grunt.initConfig({
 * switch to asynchronous file system functions to better support [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent)
 
 ## Release History
-* 1.0.3 added `options.dsStores`
+* 1.0.3 added `options.noJunk`
 * 1.0.2 performance enhancement
 * 1.0.1 tweaked log verbosity
 * 1.0.0 release
