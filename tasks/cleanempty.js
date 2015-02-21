@@ -8,8 +8,8 @@ module.exports = function(grunt)
 	grunt.registerMultiTask("cleanempty", "Clean empty files and folders.", function()
 	{
 		// Task options
-		var files   = !(grunt.option("files")    === false); // defaults to true
-		var folders = !(grunt.option("folders")  === false); // defaults to true
+		var files   = !(grunt.option("files")    === false);	// defaults to true
+		var folders = !(grunt.option("folders")  === false);	// defaults to true
 		var force   =   grunt.option("force")    === true;
 		var noWrite =   grunt.option("no-write") === true;
 		var noJunk  =   grunt.option("junk")     === true;
