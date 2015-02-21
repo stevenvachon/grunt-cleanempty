@@ -39,5 +39,8 @@
     "clean",
     "grunt-contrib-clean",
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "junk": "^1.0.0"
+  }
 }
