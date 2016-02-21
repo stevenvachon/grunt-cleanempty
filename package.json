@@ -1,7 +1,8 @@
 {
   "name": "grunt-cleanempty",
   "description": "Clean empty files and folders.",
-  "version": "1.0.3",
+  "version": "1.0.4",
+  "licenses": "MIT",
   "homepage": "https://github.com/stevenvachon/grunt-cleanempty",
   "author": {
     "name": "Steven Vachon",
@@ -15,22 +16,20 @@
   "bugs": {
     "url": "https://github.com/stevenvachon/grunt-cleanempty/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "dependencies": {
+    "junk": "^1.0.2"
+  },
+  "devDependencies": {
+    "grunt": ">=0.4",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-copy": "^0.8.2",
+    "node-dir-diff": "~0.0.1"
+  },
   "engines": {
-    "node": ">= 0.8"
+    "node": ">=0.10"
   },
   "scripts": {
     "test": "grunt"
-  },
-  "devDependencies": {
-    "grunt": "~0.4",
-    "grunt-contrib-copy": "~0.5",
-    "node-dir-diff": "0.0.1a"
   },
   "files": [
     "tasks"
@@ -39,8 +38,5 @@
     "clean",
     "grunt-contrib-clean",
     "gruntplugin"
-  ],
-  "dependencies": {
-    "junk": "^1.0.0"
-  }
+  ]
 }
